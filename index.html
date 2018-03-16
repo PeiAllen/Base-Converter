@@ -1,0 +1,41 @@
+
+<center><h1>Base Converter</h1></center>
+<center><h3>Base: <input type="text" id="base1" style="border: solid 1px gray;"> <body>&nbsp;&nbsp;&nbsp;&nbsp;</body></h3><span contenteditable="true" name="num1" id="num1" style="border: solid 1px gray; text-align:center; display:inline-block; min-width:100px;"></span> </center>
+<center><h3>Base: <input type="text" id="base2" style="border: solid 1px gray;"> <body>&nbsp;&nbsp;&nbsp;&nbsp;</body></center>
+    <center><span contenteditable="true" name="num2" id="num2" style="border: solid 1px gray; text-align:center; display:block; min-width:100px;"></span> </center>
+    <center><button onclick="go()">Submit</button></center>
+    
+    <script> 
+        var num2=document.getElementById("num2");
+        setInterval(function(){
+            if(num2.innerHTML==""){
+                num2.style.visibility='hidden';
+            }
+            else{
+                 num2.style.visibility='visible';
+            }
+        },0)
+        function go(){
+     var a=parseInt(document.getElementById("base1").value);
+        var b=parseInt(document.getElementById("base2").value);
+   var inn=document.getElementById("num1").innerHTML.split('');
+        var indext = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','+','/'];
+        var re=[];
+        var m=0;
+        var temp=inn.length-1;
+        for(var i=0;i<=temp;i++){
+        m+=indext.indexOf(inn[i])*Math.pow(a, temp-i);
+        }
+        while(m>=b){
+        re.push(m%b);
+        m=Math.floor(m/b);
+        }
+        re.push(m);
+            var string="";
+            string.concat(m);
+       while(re.length>0){
+        string=string.concat(indext[re.pop()]);
+        }
+            num2.innerHTML=string;
+            console.log(string);
+        }</script>
